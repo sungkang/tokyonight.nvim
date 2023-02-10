@@ -6,6 +6,7 @@ local M = {}
 M.default = {
   none = "NONE",
   bg_dark = "#1f2335",
+  bg_light = "#2c334b",
   bg = "#24283b",
   bg_highlight = "#292e42",
   terminal_black = "#414868",
@@ -126,7 +127,8 @@ function M.setup(opts)
   colors.border = colors.black
 
   -- Popups and statusline always get a dark background
-  colors.bg_popup = colors.bg_dark
+  colors.bg_popup = config.options.styles.popups == "light" and colors.bg_light
+    or colors.bg_dark
   colors.bg_statusline = colors.bg_dark
 
   -- Sidebar and Floats are configurable
@@ -136,6 +138,7 @@ function M.setup(opts)
 
   colors.bg_float = config.options.styles.floats == "transparent" and colors.none
     or config.options.styles.floats == "dark" and colors.bg_dark
+    or config.options.styles.floats == "light" and colors.bg_light
     or colors.bg
 
   colors.bg_visual = util.darken(colors.blue0, 0.7)
